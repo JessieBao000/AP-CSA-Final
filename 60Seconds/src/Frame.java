@@ -67,7 +67,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		map = new Map();
 
 
-		
+		testPopup();
 		
 	
 		//backgroundMusic.play();
@@ -90,25 +90,21 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	
 	public void testPopup() {
-		/*Object[] possibilities = {"ham", "spam", "yam"};
-		String s = (String)JOptionPane.showInputDialog(
-		                    "Complete the sentence:\n"
-		                    + "\"Green eggs and...\"",
-		                    "Customized Dialog",
-		                    JOptionPane.PLAIN_MESSAGE,
-		                    possibilities,
-		                    "ham");
+        // Show input dialog with a message and default value
+        String userInput = JOptionPane.showInputDialog(
+            null, 
+            "Enter your name:", 
+            "User Input", 
+            JOptionPane.QUESTION_MESSAGE
+        );
 
-		//If a string was returned, say so.
-		if ((s != null) && (s.length() > 0)) {
-		    setLabel("Green eggs and... " + s + "!");
-		    return;
-		}
-
-		//If you're here, the return value was null/empty.
-		setLabel("Come on, finish the sentence!");*/
-	}
-	
+        // If user input is not null and not empty, display it
+        if (userInput != null && !userInput.isEmpty()) {
+            System.out.println("User entered: " + userInput);
+        } else {
+            System.out.println("User did not enter anything.");
+        }
+    }
 	
 
 	@Override
