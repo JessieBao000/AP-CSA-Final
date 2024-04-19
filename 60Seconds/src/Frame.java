@@ -28,13 +28,21 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 	
 	
 	
 	Map map;
+	
+	static String state = "California";
+	
+	static HashMap dangers = new HashMap<String, State>();
+	
 
 	
 	
@@ -49,7 +57,66 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	}
 	
 	public static void main(String[] arg) {
+		
+		
+		try {
+			
+			
+			Scanner scanner = new Scanner(new File("disasters.txt"));
+			
+
+			//while(scanner.hasNext()) {
+				String line = scanner.next();
+				String s="";
+				int earthquake = 0;
+				int volcano=0;
+				int bomb=0;
+				
+				System.out.println(line);
+				String[] arr= line.split("," , 4);
+				
+				for(int i = 0; i<4;i++) {
+					
+					if(i==0) {
+						s = arr[i].trim();
+						s = s.toLowerCase();
+						state = s;
+					}else if(i==1) {
+						earthquake = Integer.valueOf(arr[i]);
+					}else if(i==2) {
+						volcano = Integer.valueOf(arr[i]);
+					}else if(i==3) {
+						bomb = Integer.valueOf(arr[i]);
+					}
+					
+				}
+				
+				
+				State temp = new State(s, earthquake, volcano, bomb);
+				dangers.put(s,temp);
+				
+				
+				
+			//}
+			
+			scanner.close();
+			
+			
+			
+		}catch(Exception e) {
+			
+			System.out.println(e);
+			
+		}
+		
+		
+		
 		Frame f = new Frame();
+			
+		
+		
+		
+		
 	}
 	
 	public Frame() {
@@ -67,7 +134,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		map = new Map();
 
 
-		
+		testPopup();
 		
 	
 		//backgroundMusic.play();
@@ -90,24 +157,40 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	
 	public void testPopup() {
-		/*Object[] possibilities = {"ham", "spam", "yam"};
-		String s = (String)JOptionPane.showInputDialog(
-		                    "Complete the sentence:\n"
-		                    + "\"Green eggs and...\"",
-		                    "Customized Dialog",
-		                    JOptionPane.PLAIN_MESSAGE,
-		                    possibilities,
-		                    "ham");
+        // Show input dialog with a message and default value
+        String userInput = JOptionPane.showInputDialog(
+            null, 
+            "Enter a United State:", 
+            "User Input", 
+            JOptionPane.QUESTION_MESSAGE
+        );
+        
+        
+        state = userInput.toLowerCase();
+		state = userInput.replace(" ", "");
 
-		//If a string was returned, say so.
-		if ((s != null) && (s.length() > 0)) {
-		    setLabel("Green eggs and... " + s + "!");
-		    return;
-		}
+        // If user input is not null and not empty, display it
+        while ((userInput.equals(null) )|| userInput.isEmpty() || !dangers.containsKey(state)) {
+           		
+             System.out.println("User did not enter anything.");
+                    
+             userInput = JOptionPane.showInputDialog(
+                      null, 
+                      "Enter a valid United State", 
+                      "User Input", 
+                      JOptionPane.QUESTION_MESSAGE
+                 );
+             
+            state = userInput.toLowerCase();
+     		state = userInput.replace(" ", "");
+            
+        } 
+        
+        State temp = (State)(dangers.get(state));
+   		System.out.println(state + temp.getEarthquake() + " " + temp.getVolcano() + " "+ temp.getBomb());
+   		state = temp.getState();
+    }
 
-		//If you're here, the return value was null/empty.
-		setLabel("Come on, finish the sentence!");*/
-	}
 	
 	
 
