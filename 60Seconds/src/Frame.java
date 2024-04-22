@@ -63,17 +63,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			
 			
 			Scanner scanner = new Scanner(new File("disasters.txt"));
-			
+			scanner.next();
 
-			//while(scanner.hasNext()) {
+			while(scanner.hasNext()) {
 				String line = scanner.next();
 				String s="";
 				int earthquake = 0;
 				int volcano=0;
 				int bomb=0;
 				
-				System.out.println(line);
-				String[] arr= line.split("," , 4);
+				//System.out.println(line);
+				String[] arr= line.split(",",5);
 				
 				for(int i = 0; i<4;i++) {
 					
@@ -93,11 +93,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				
 				
 				State temp = new State(s, earthquake, volcano, bomb);
+				//System.out.println(s + earthquake + volcano + bomb);
 				dangers.put(s,temp);
 				
 				
 				
-			//}
+			}
 			
 			scanner.close();
 			
@@ -166,8 +167,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
         );
         
         
-        state = userInput.toLowerCase();
 		state = userInput.replace(" ", "");
+		state = userInput.toLowerCase();
+		System.out.println("looks like "+ state);
 
         // If user input is not null and not empty, display it
         while ((userInput.equals(null) )|| userInput.isEmpty() || !dangers.containsKey(state)) {
