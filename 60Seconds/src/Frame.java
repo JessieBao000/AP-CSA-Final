@@ -167,8 +167,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
         );
         
         
-		state = userInput.replace(" ", "");
-		state = userInput.toLowerCase();
+		String tempstate = userInput.replace(" ", "");
+		state = tempstate.toLowerCase();
 		System.out.println("looks like "+ state);
 
         // If user input is not null and not empty, display it
