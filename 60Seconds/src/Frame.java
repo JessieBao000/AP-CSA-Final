@@ -172,7 +172,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
         // If user input is not null and not empty, display it
         while ((userInput.equals(null) )|| userInput.isEmpty() || !dangers.containsKey(state)) {
            		
-             System.out.println("User did not enter anything.");
+             System.out.println("Enter in a new state");
                     
              userInput = JOptionPane.showInputDialog(
                       null, 
