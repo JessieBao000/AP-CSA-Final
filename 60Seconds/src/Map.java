@@ -8,21 +8,23 @@ import java.net.URL;
 
 public class Map {
 
-	private Image test1, test2, test3; 
+	private Image living, garage, stewie, attic, kitchen; 
 	private AffineTransform tx;
 	
 	public int dir=0;
 	public int maxDir=2;
 	int width, height;
 	int x, y;				
-	double scaleWidth = 0.8;		
-	double scaleHeight = 0.8;
+	double scaleWidth = 0.75;		
+	double scaleHeight = 0.75;
 	
 	public Map() {
 		
-		test1 	= getImage("/imgs/"+"test1.jpg"); 
-		test2 	= getImage("/imgs/"+"test2.jpg"); 
-		test3 	= getImage("/imgs/"+"stewie.png"); 
+		living 	= getImage("/imgs/"+"familyguyroom.PNG"); 
+		garage 	= getImage("/imgs/"+"garage.PNG"); 
+		stewie 	= getImage("/imgs/"+"stewie.png"); 
+		attic 	= getImage("/imgs/"+"houseattic.PNG"); 
+		kitchen 	= getImage("/imgs/"+"kitchen.png"); 
 		
 		width = 900;
 		height = 600;
@@ -46,17 +48,27 @@ public class Map {
 		
 		switch(dir) {
 			case 0:
-				g2.drawImage(test1, tx, null);
+				g2.drawImage(living, tx, null);
 				g.drawRect(x, y, width, height);
 				break;
 				
 			case 1:
-				g2.drawImage(test2, tx, null);
+				g2.drawImage(garage, tx, null);
 				g.drawRect(x, y, width, height);
 				break;
 				
 			case 2:
-				g2.drawImage(test3, tx, null);
+				g2.drawImage(stewie, tx, null);
+				g.drawRect(x, y, width, height);
+				break;
+				
+			case 3:
+				g2.drawImage(attic, tx, null);
+				g.drawRect(x, y, width, height);
+				break;
+				
+			case 4:
+				g2.drawImage(kitchen, tx, null);
 				g.drawRect(x, y, width, height);
 				break;
 				
