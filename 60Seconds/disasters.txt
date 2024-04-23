@@ -1,3 +1,4 @@
+state,earthquake,volcano,bomb
 Alabama,2,1,1 
 Alaska,10,10,7 
 Arizona,3,1,3 

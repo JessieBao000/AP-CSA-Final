@@ -15,16 +15,16 @@ public class Map {
 	public int maxDir=2;
 	int width, height;
 	int x, y;				
-	double scaleWidth = 3;		
-	double scaleHeight = 3;
+	double scaleWidth = 0.8;		
+	double scaleHeight = 0.8;
 	
 	public Map() {
 		
 		test1 	= getImage("/imgs/"+"test1.jpg"); 
 		test2 	= getImage("/imgs/"+"test2.jpg"); 
-		test3 	= getImage("/imgs/"+"test3.png"); 
+		test3 	= getImage("/imgs/"+"stewie.png"); 
 		
-		width = 600;
+		width = 900;
 		height = 600;
 		x = 0;
 		y = 0;
