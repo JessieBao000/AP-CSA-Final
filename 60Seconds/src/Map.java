@@ -12,7 +12,7 @@ public class Map {
 	private AffineTransform tx;
 	
 	public int dir=0;
-	public int maxDir=2;
+	public int maxDir=4;
 	int width, height;
 	int x, y;				
 	double scaleWidth = 0.75;		
