@@ -9,7 +9,7 @@ import java.net.URL;
 public class Map {
 
 	private Image living, garage, stewie, attic, kitchen; 
-	private AffineTransform tx;
+	private AffineTransform tx, tx2;
 	
 	public int dir=0;
 	public int maxDir=4;
@@ -17,6 +17,8 @@ public class Map {
 	int x, y;				
 	double scaleWidth = 0.75;		
 	double scaleHeight = 0.75;
+	double scaleWidth2 = 0.6;		
+	double scaleHeight2 = 0.6;
 	
 	public Map() {
 		
@@ -32,8 +34,9 @@ public class Map {
 		y = 0;
 		
 		tx = AffineTransform.getTranslateInstance(0, 0);
+		tx2 = AffineTransform.getTranslateInstance(0, 0);
 		
-		init(x, y); 
+		//init(x, y); 
 		
 	}
 
@@ -44,30 +47,35 @@ public class Map {
 
 		g.drawRect(x, y, width, height);
 
-		init(x,y);
+	//init(x,y);
 		
 		switch(dir) {
 			case 0:
-				g2.drawImage(living, tx, null);
+				init2(x,y);
+				g2.drawImage(living, tx2, null);
 				g.drawRect(x, y, width, height);
 				break;
 				
 			case 1:
-				g2.drawImage(garage, tx, null);
+				init2(x,y);
+				g2.drawImage(garage, tx2, null);
 				g.drawRect(x, y, width, height);
 				break;
 				
 			case 2:
+				init(x, y); 
 				g2.drawImage(stewie, tx, null);
 				g.drawRect(x, y, width, height);
 				break;
 				
 			case 3:
+				init(x, y); 
 				g2.drawImage(attic, tx, null);
 				g.drawRect(x, y, width, height);
 				break;
 				
 			case 4:
+				init(x, y); 
 				g2.drawImage(kitchen, tx, null);
 				g.drawRect(x, y, width, height);
 				break;
@@ -81,6 +89,12 @@ public class Map {
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
 		tx.scale(scaleWidth, scaleHeight);
+	}
+	
+	
+	private void init2(double a, double b) {
+		tx2.setToTranslation(a, b);
+		tx2.scale(scaleWidth2, scaleHeight2);
 	}
 
 	
