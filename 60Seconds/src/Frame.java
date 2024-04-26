@@ -42,6 +42,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	static String state = "California";
 	
 	static HashMap dangers = new HashMap<String, State>();
+	static HashMap items = new HashMap<String, ItemsInfo>();
 	
 	int disaster = 0;
 	
@@ -60,6 +61,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	public static void main(String[] arg) {
 		
+		/*
+		 * DISASTERS HASHMAP
+		 */
 		
 		try {
 			
@@ -97,6 +101,66 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				State temp = new State(s, earthquake, volcano, bomb);
 				//System.out.println(s + earthquake + volcano + bomb);
 				dangers.put(s,temp);
+				
+				
+				
+			}
+			
+			scanner.close();
+			
+			
+			
+		}catch(Exception e) {
+			
+			System.out.println(e);
+			
+		}
+		
+		
+		
+		
+		/*
+		 * ITEMS HASHMAP
+		 */
+		try {
+			
+			
+			Scanner scanner = new Scanner(new File("items.txt"));
+			scanner.next();
+
+			while(scanner.hasNext()) {
+				String line = scanner.next();
+				String n="";
+				int hunger = 0;
+				int saftey=0;
+				int health=0;
+				int sanity = 0;
+				
+				//System.out.println(line);
+				String[] arr= line.split(",",6);
+				
+				for(int i = 0; i<5;i++) {
+					
+					if(i==0) {
+						n = arr[i].trim();
+						n = n.toLowerCase();
+					}else if(i==1) {
+						hunger = Integer.valueOf(arr[i]);
+					}else if(i==2) {
+						saftey = Integer.valueOf(arr[i]);
+					}else if(i==3) {
+						health = Integer.valueOf(arr[i]);
+					}else if(i==4) {
+						sanity = Integer.valueOf(arr[i]);
+					}
+					
+				}
+				
+				
+				ItemsInfo temp = new ItemsInfo(n, hunger, saftey, health, sanity);
+				//System.out.println(s + earthquake + volcano + bomb);
+				dangers.put(n,temp);
+				System.out.println(n);
 				
 				
 				
