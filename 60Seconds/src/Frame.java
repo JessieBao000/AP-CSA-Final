@@ -42,9 +42,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	static String state = "California";
 	
 	static HashMap dangers = new HashMap<String, State>();
-	static HashMap items = new HashMap<String, ItemsInfo>();
+	static HashMap itemsList = new HashMap<String, ItemsInfo>();
 	
 	int disaster = 0;
+	
+    Item[] items;
+	Item test;
 	
 
 	
@@ -56,6 +59,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		super.paintComponent(g);
 		
 		map.paint(g);
+		
+		if(map.getDir()==4) {
+			items[0].paint(g);
+		}
 	    
 	}
 	
@@ -127,7 +134,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			
 			Scanner scanner = new Scanner(new File("items.txt"));
 			scanner.next();
-
+			
 			while(scanner.hasNext()) {
 				String line = scanner.next();
 				String n="";
@@ -159,8 +166,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				
 				ItemsInfo temp = new ItemsInfo(n, hunger, saftey, health, sanity);
 				//System.out.println(s + earthquake + volcano + bomb);
-				dangers.put(n,temp);
+				itemsList.put(n,temp);
 				System.out.println(n);
+				
 				
 				
 				
@@ -199,6 +207,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 
 		map = new Map();
+		items = new Item[15];
+		for(int i =0; i<items.length;i++) {
+			Item a = new Item();
+			a.setDir(i);
+			items[i] = a;
+		}
 
 
 		statePopup();
@@ -337,6 +351,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				}else {
 					map.dir = map.getDir()-1;
 				}
+				
+				
 				
 				break;
 				
