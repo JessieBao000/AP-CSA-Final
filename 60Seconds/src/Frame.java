@@ -135,7 +135,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		map = new Map();
 
 
-		testPopup();
+		statePopup();
+		
+		openPopup();
 		
 	
 		//backgroundMusic.play();
@@ -157,7 +159,44 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	}
 	
 	
-	public void testPopup() {
+	public void statePopup() {
+        // Show input dialog with a message and default value
+        String userInput = JOptionPane.showInputDialog(
+            null, 
+            "Enter a United State:", 
+            "User Input", 
+            JOptionPane.QUESTION_MESSAGE
+        );
+        
+        
+		String tempstate = userInput.replace(" ", "");
+		state = tempstate.toLowerCase();
+		System.out.println("looks like "+ state);
+
+        // If user input is not null and not empty, display it
+        while ((userInput.equals(null) )|| userInput.isEmpty() || !dangers.containsKey(state)) {
+           		
+             System.out.println("Enter in a new state");
+                    
+             userInput = JOptionPane.showInputDialog(
+                      null, 
+                      "Enter a valid United State", 
+                      "User Input", 
+                      JOptionPane.QUESTION_MESSAGE
+                 );
+             
+            state = userInput.toLowerCase();
+     		state = userInput.replace(" ", "");
+            
+        } 
+        
+        State temp = (State)(dangers.get(state));
+   		System.out.println(state + temp.getEarthquake() + " " + temp.getVolcano() + " "+ temp.getBomb());
+   		state = temp.getState();
+    }
+	
+	
+	public void openPopup() {
         // Show input dialog with a message and default value
         String userInput = JOptionPane.showInputDialog(
             null, 
