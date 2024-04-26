@@ -32,37 +32,39 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.TimerTask;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.util.Scanner;
+import java.util.TimerTask;
+
+import javax.swing.JFrame;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
-	
-	
-	
-	Map map;
-	
-	static String state = "California";
-	
-	static HashMap dangers = new HashMap<String, State>();
-	
-	int disaster = 0;
-	
 
-	
-	
-	
-	
+	Map map;
+
+	static String state = "California";
+	Clock clock = new Clock();
+	static HashMap dangers = new HashMap<String, State>();
 
 	public void paint(Graphics g) {
 		super.paintComponent(g);
-		
 		map.paint(g);
-	    
+		clock.paint(g);
+
 	}
-	
+	    
+
+
 	public static void main(String[] arg) {
-		
-		
+	
+
+
 		try {
 			
+		    
 			
 			Scanner scanner = new Scanner(new File("disasters.txt"));
 			scanner.next();
@@ -130,8 +132,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		f.setResizable(false);
  		f.addMouseListener(this);
 		f.addKeyListener(this);
-
-
+		
 
 
 		map = new Map();
@@ -200,21 +201,38 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	public void openPopup() {
         // Show input dialog with a message and default value
-		    /* Simple JOptionPane ShowOptionDialogJava example */    
-		    String[] options = { "Earthquake", "Volcano", "Bomb" };
-		    int selection = JOptionPane.showOptionDialog(null, "You have 60 seconds to gather supplies before a disaster, which one will happen?", "Disaster Struck!", 
-		                                                      0, 3, null, options, options[0]);
-		    if (selection == 0) {
-		      disaster = 1;
-		    }
-		    if (selection == 1) { 
-		    	disaster = 2;
-		    }
-		    if (selection == 2) { 
-		    	disaster = 3;
-		  }
-		    
-		  // startTimer();
+        String userInput = JOptionPane.showInputDialog(
+            null, 
+            "Enter a United State:", 
+            "User Input", 
+            JOptionPane.QUESTION_MESSAGE
+        );
+        
+        
+		String tempstate = userInput.replace(" ", "");
+		state = tempstate.toLowerCase();
+		System.out.println("looks like "+ state);
+
+        // If user input is not null and not empty, display it
+        while ((userInput.equals(null) )|| userInput.isEmpty() || !dangers.containsKey(state)) {
+           		
+             System.out.println("Enter in a new state");
+                    
+             userInput = JOptionPane.showInputDialog(
+                      null, 
+                      "Enter a valid United State", 
+                      "User Input", 
+                      JOptionPane.QUESTION_MESSAGE
+                 );
+             
+            state = userInput.toLowerCase();
+     		state = userInput.replace(" ", "");
+            
+        } 
+        
+        State temp = (State)(dangers.get(state));
+   		System.out.println(state + temp.getEarthquake() + " " + temp.getVolcano() + " "+ temp.getBomb());
+   		state = temp.getState();
     }
 
 	
