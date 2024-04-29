@@ -16,10 +16,10 @@ public class Item {
 	public int maxDir=15;
 	int width, height;
 	int x, y;				
-	double scaleWidth = 0.75;		
-	double scaleHeight = 0.75;
-	double scaleWidth2 = 0.6;		
-	double scaleHeight2 = 0.6;
+	double scaleWidth = 0.6;		
+	double scaleHeight = 0.6;
+	double scaleWidth2 = 0.2;		
+	double scaleHeight2 = 0.2;
 	
 	public Item() {
 		
@@ -45,7 +45,7 @@ public class Item {
 		y = 0;
 		
 		tx = AffineTransform.getTranslateInstance(0, 0);
-		//tx2 = AffineTransform.getTranslateInstance(0, 0);
+		tx2 = AffineTransform.getTranslateInstance(0, 0);
 		
 		//init(x, y); 
 		
@@ -61,13 +61,13 @@ public class Item {
 		
 		switch(dir) {
 			case 0:
-				init(x,y);
+				init(100,100);
 				g2.drawImage(soup, tx, null);
 				//g.drawRect(x, y, width, height);
 				break;
 			case 1:
-				init(x,y);
-				g2.drawImage(water, tx, null);
+				init2(200,200);
+				g2.drawImage(water, tx2, null);
 				//g.drawRect(x, y, width, height);
 				break;
 			case 2:

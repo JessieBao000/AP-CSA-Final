@@ -62,6 +62,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		if(map.getDir()==4) {
 			items[0].paint(g);
+			items[1].paint(g);
 		}
 	    
 	}
