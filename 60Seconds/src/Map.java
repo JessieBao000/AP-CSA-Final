@@ -69,7 +69,7 @@ public class Map {
 				break;
 				
 			case 3:
-				init(x, y); 
+				init(x, y);  
 				g2.drawImage(attic, tx, null);
 				g.drawRect(x, y, width, height);
 				break;
