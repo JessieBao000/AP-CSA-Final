@@ -44,22 +44,23 @@ import javax.swing.JFrame;
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 
 	Map map;
+	Clock clock;
 
 	static String state = "California";
-	//Clock clock = new Clock();
+	
 	static HashMap dangers = new HashMap<String, State>();
 
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		map.paint(g);
-		//clock.paint(g);
+		clock.paint(g);
 
 	}
-	  JPanel clock = new JPanel();
+
 
 	public static void main(String[] arg) {
-	
-
+		
+		
 
 		try {
 			
@@ -130,11 +131,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		f.setResizable(false);
  		f.addMouseListener(this);
 		f.addKeyListener(this);
+		//f.setDefaultCloseOperation(WinndowConstans.EXIT on close);
+		//f.add(clock);
+		//f.setVisible(true);
 		
 
 
-		map = new Map();
 
+		map = new Map();
+	 clock = new Clock();
 
 		statePopup();
 		

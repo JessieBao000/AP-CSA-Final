@@ -7,45 +7,47 @@ import java.util.TimerTask;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import java.awt.Font;
 
 
+public class Clock {
 
-public class Clock extends JFrame {
-private JLabel interval;
-private JLabel dateLabel;
-
-public void paint(Graphics g) {
-	Scanner sc = new Scanner(System.in);
-	boolean b = true;
-    String secs = "60";
-    int delay = 1000;
-    int period = 1000;
-    //timer = new Timer();
-    //interval = Integer.parseInt(secs);
-	Graphics g2 = (Graphics) g;
-	//g2.setFont("Digital-7 Mono");
-	//g2.drawString(secs, 400, 30);
 	
-	//timer.scheduleAtFixedRate(new TimerTask() {
 
-      //  public void run() 
-	{
-            //System.out.println(setInterval());
-            
+	public void paint(Graphics g) {
 
-        }
-   // }, delay, period);
+		int sec = 10;
+		Timer t = new Timer();
 
+		t.scheduleAtFixedRate(new TimerTask() {
+		
+	//	t.scheduleAtFixedRate(new TimerTask());;
+		
+		int countdown = sec;
 
+		public void run() {
+		
+
+		g.drawString(Integer.toString(sec), 10, 20);
+			
+		if(countdown < 0) {
+			System.out.println("complete");
+			t.cancel();
+			
+		}
+		countdown--;
+		}
+	}, 0, 6000);
+	
+	
 	}
-
-//private static final int {
-    //if (interval == 1)
-    //    timer.cancel();
-  //  return --interval;
-//}
-
+	
+	   public static void main(String[] args) {
+		   
+	   }
 
 }
+
+
