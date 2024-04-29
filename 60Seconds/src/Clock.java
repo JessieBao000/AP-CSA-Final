@@ -6,14 +6,15 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import java.awt.Font;
 
 
 
-public class Clock {
-static int interval;
-static Timer timer;
+public class Clock extends JFrame {
+private JLabel interval;
+private JLabel dateLabel;
 
 public void paint(Graphics g) {
 	Scanner sc = new Scanner(System.in);
@@ -21,28 +22,30 @@ public void paint(Graphics g) {
     String secs = "60";
     int delay = 1000;
     int period = 1000;
-    timer = new Timer();
-    interval = Integer.parseInt(secs);
+    //timer = new Timer();
+    //interval = Integer.parseInt(secs);
 	Graphics g2 = (Graphics) g;
 	//g2.setFont("Digital-7 Mono");
-	g2.drawString(secs, 400, 30);
+	//g2.drawString(secs, 400, 30);
 	
-	timer.scheduleAtFixedRate(new TimerTask() {
+	//timer.scheduleAtFixedRate(new TimerTask() {
 
-        public void run() {
-            System.out.println(setInterval());
+      //  public void run() 
+	{
+            //System.out.println(setInterval());
             
 
         }
-    }, delay, period);
+   // }, delay, period);
 
-}
 
-private static final int setInterval() {
-    if (interval == 1)
-        timer.cancel();
-    return --interval;
-}
+	}
+
+//private static final int {
+    //if (interval == 1)
+    //    timer.cancel();
+  //  return --interval;
+//}
 
 
 }

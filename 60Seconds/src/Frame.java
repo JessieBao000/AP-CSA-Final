@@ -46,17 +46,16 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Map map;
 
 	static String state = "California";
-	Clock clock = new Clock();
+	//Clock clock = new Clock();
 	static HashMap dangers = new HashMap<String, State>();
 
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		map.paint(g);
-		clock.paint(g);
+		//clock.paint(g);
 
 	}
-	    
-
+	  JPanel clock = new JPanel();
 
 	public static void main(String[] arg) {
 	
@@ -64,7 +63,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 		try {
 			
-		    
 			
 			Scanner scanner = new Scanner(new File("disasters.txt"));
 			scanner.next();
