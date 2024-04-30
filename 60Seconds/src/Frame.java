@@ -47,12 +47,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	
 	Map map;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	
-=======
+//=======
 	Clock clock;
 
->>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
+//>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 	static String state = "California";
 	
 	static HashMap dangers = new HashMap<String, State>();
@@ -68,7 +68,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		map.paint(g);
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		
 		//garage
 		if(map.getDir()==1) {
@@ -93,24 +93,24 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 						
 				
 		
-=======
+//=======
 		clock.paint(g);
 
->>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
+//>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 	}
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	
-		public static void main(String[] arg) {
+//		public static void main(String[] arg) {
 		
 		
-=======
+//=======
 
 
 	public static void main(String[] arg) {
 		
 		
 
->>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
+//>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 		try {
 			
 			
@@ -241,7 +241,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		map = new Map();
 		items = new Item[15];
 		for(int i =0; i<items.length;i++) {
@@ -249,8 +249,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			a.setDir(i);
 			items[i] = a;
 		}
-=======
->>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
+//=======
+//>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 
 		map = new Map();
 	 clock = new Clock();
