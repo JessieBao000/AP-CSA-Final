@@ -47,7 +47,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	
 	Map map;
+<<<<<<< HEAD
 	
+=======
+	Clock clock;
+
+>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 	static String state = "California";
 	
 	static HashMap dangers = new HashMap<String, State>();
@@ -63,6 +68,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		map.paint(g);
+<<<<<<< HEAD
 		
 		//garage
 		if(map.getDir()==1) {
@@ -87,11 +93,24 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 						
 				
 		
+=======
+		clock.paint(g);
+
+>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 	}
+<<<<<<< HEAD
 	
 		public static void main(String[] arg) {
 		
 		
+=======
+
+
+	public static void main(String[] arg) {
+		
+		
+
+>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 		try {
 			
 			
@@ -216,9 +235,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		f.setResizable(false);
  		f.addMouseListener(this);
 		f.addKeyListener(this);
+		//f.setDefaultCloseOperation(WinndowConstans.EXIT on close);
+		//f.add(clock);
+		//f.setVisible(true);
 		
 
 
+<<<<<<< HEAD
 		map = new Map();
 		items = new Item[15];
 		for(int i =0; i<items.length;i++) {
@@ -226,7 +249,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			a.setDir(i);
 			items[i] = a;
 		}
+=======
+>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 
+		map = new Map();
+	 clock = new Clock();
 
 		statePopup();
 		
