@@ -25,14 +25,14 @@ public class Item {
 		
 		soup 	= getImage("/imgs/"+"campbell.png"); 
 		water 	= getImage("/imgs/"+"water.png"); 
-		aid 	= getImage("/imgs/"+"campbell.png"); 
+		aid 	= getImage("/imgs/"+"aid.png"); 
 		shelter = getImage("/imgs/"+"water.png"); 
-		cloth 	= getImage("/imgs/"+"campbell.png"); 
-		knife 	= getImage("/imgs/"+"water.png"); 
-		flashlight 	= getImage("/imgs/"+"campbell.png"); 
-		radio 	= getImage("/imgs/"+"water.png"); 
-		gas 	= getImage("/imgs/"+"campbell.png"); 
-		soap 	= getImage("/imgs/"+"water.png"); 
+		cloth 	= getImage("/imgs/"+"cloth.png"); 
+		knife 	= getImage("/imgs/"+"knife.png"); 
+		flashlight 	= getImage("/imgs/"+"flashlight.png"); 
+		radio 	= getImage("/imgs/"+"radio.png"); 
+		gas 	= getImage("/imgs/"+"gas.png"); 
+		soap 	= getImage("/imgs/"+"soap.png"); 
 		map 	= getImage("/imgs/"+"campbell.png"); 
 		gloves 	= getImage("/imgs/"+"water.png"); 
 		family 	= getImage("/imgs/"+"water.png"); 
@@ -71,7 +71,7 @@ public class Item {
 				//g.drawRect(x, y, width, height);
 				break;
 			case 2:
-				init(x,y);
+				init(150,300);
 				g2.drawImage(aid, tx, null);
 				//g.drawRect(x, y, width, height);
 				break;
@@ -81,18 +81,18 @@ public class Item {
 				//g.drawRect(x, y, width, height);
 				break;
 			case 4:
-				init(x,y);
-				g2.drawImage(cloth, tx, null);
+				init2(500,400);
+				g2.drawImage(cloth, tx2, null);
 				//g.drawRect(x, y, width, height);
 				break;
 			case 5:
-				init(x,y);
-				g2.drawImage(knife, tx, null);
+				init2(300,200);
+				g2.drawImage(knife, tx2, null);
 				//g.drawRect(x, y, width, height);
 				break;
 			case 6:
-				init(x,y);
-				g2.drawImage(flashlight, tx, null);
+				init2(550,500);
+				g2.drawImage(flashlight, tx2, null);
 				//g.drawRect(x, y, width, height);
 				break;
 			case 7:

@@ -32,8 +32,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.TimerTask;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.util.Scanner;
+import java.util.TimerTask;
+
+import javax.swing.JFrame;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
+//<<<<<<< HEAD
 	
 	
 	
@@ -49,29 +58,39 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
     Item[] items;
 	Item test;
 	
-
-	
-	
-	
-	
+	//Clock clock = new Clock();
 
 	public void paint(Graphics g) {
 		super.paintComponent(g);
-		
 		map.paint(g);
 		
+		//garage
+		if(map.getDir()==1) {
+			items[2].paint(g);
+		}
+		//stewie
+		if(map.getDir()==2) {
+			items[4].paint(g);
+		}
+		//attic
+		if(map.getDir()==3) {
+			items[6].paint(g);
+		}
+		//kitchen
 		if(map.getDir()==4) {
 			items[0].paint(g);
 			items[1].paint(g);
+			items[5].paint(g);
 		}
+		
 	    
+						
+				
+		
 	}
 	
-	public static void main(String[] arg) {
+		public static void main(String[] arg) {
 		
-		/*
-		 * DISASTERS HASHMAP
-		 */
 		
 		try {
 			
@@ -123,9 +142,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			System.out.println(e);
 			
 		}
-		
-		
-		
 		
 		/*
 		 * ITEMS HASHMAP
@@ -185,15 +201,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			
 		}
 		
-		
-		
-		Frame f = new Frame();
+	Frame f = new Frame();	
 			
-		
-		
-		
-		
-	}
+			
+
+	 }
+	
 	
 	public Frame() {
 		JFrame f = new JFrame("60 Seconds");
@@ -203,8 +216,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		f.setResizable(false);
  		f.addMouseListener(this);
 		f.addKeyListener(this);
-
-
+		
 
 
 		map = new Map();
@@ -220,7 +232,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		openPopup();
 		
-	
+		
+		
 		//backgroundMusic.play();
 
 	
@@ -228,10 +241,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//the cursor image must be outside of the src folder
 		//you will need to import a couple of classes to make it fully 
 		//functional! use eclipse quick-fixes
-		/*setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-				new ImageIcon("torch.png").getImage(),
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("placeholder.png").getImage(),
 				new Point(0,0),"custom cursor"));	
-		*/
+		
 		
 		Timer t = new Timer(16, this);
 		t.start();
