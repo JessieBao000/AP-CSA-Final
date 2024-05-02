@@ -1,11 +1,9 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GridLayout;
+import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,33 +11,22 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.TimerTask;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.TimerTask;
-
-import java.awt.Color;
-import java.awt.Dimension;
-import java.util.Scanner;
-import java.util.TimerTask;
-
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 //<<<<<<< HEAD
@@ -50,7 +37,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 //<<<<<<< HEAD
 	
 //=======
-	Clock clock;
+	//Clock clock;
 
 //>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 	static String state = "California";
@@ -62,17 +49,23 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
     Item[] items;
 	Item test;
+	static Timer tick;
+	static int sec = 60;
 	
 	//Clock clock = new Clock();
 
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		map.paint(g);
+
+		//clock.paint(g);
+
 //<<<<<<< HEAD
 		
 		//garage
 		if(map.getDir()==1) {
 			items[2].paint(g);
+			
 		}
 		//stewie
 		if(map.getDir()==2) {
@@ -89,12 +82,18 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			items[5].paint(g);
 		}
 		
+		Font myFont = new Font ("Courier New", 1, 50);
+		g.setFont (myFont);
+		g.setColor(Color.red);
+    	g.drawString(": " + Integer.toString(sec), 370, 50);
+    	g.drawRect(disaster, disaster, sec, disaster);
+
+ 
 	    
-						
+
 				
 		
 //=======
-		clock.paint(g);
 
 //>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 	}
@@ -105,14 +104,42 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 //=======
 
+	public static String tick(int sec) {
+	   if(sec == 0) {
+	    	System.out.println("complete");
+	    				tick.stop();
+	
 
-	public static void main(String[] arg) {
+	}
+	return Integer.toString(sec);
+	}
+
+	public static void main(String[] arg) throws Exception{
 		
 		
+	        
 
 //>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 		try {
 			
+			 ActionListener taskPerformer = new ActionListener() {
+
+		            public void actionPerformed(ActionEvent evt) {
+		                //...Perform a task...
+			            tick(sec);
+			            sec--;
+		            }
+		            			 
+			 };
+			 
+			 tick = new Timer(1000, taskPerformer);
+		    tick.start();
+		    
+		    	
+		
+		
+	        
+		    		
 			
 			Scanner scanner = new Scanner(new File("disasters.txt"));
 			scanner.next();
@@ -220,6 +247,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			
 		}
 		
+		
 	Frame f = new Frame();	
 			
 			
@@ -253,7 +281,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 //>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 
 		map = new Map();
-	 clock = new Clock();
+	// clock = new Clock();
 
 		statePopup();
 		
