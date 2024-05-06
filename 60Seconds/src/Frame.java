@@ -50,7 +50,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 //<<<<<<< HEAD
 	
 //=======
-	Clock clock;
+	//Clock clock;
 
 //>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 	static String state = "California";
@@ -62,6 +62,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
     Item[] items;
 	Item test;
+	static Timer tick;
+	static int sec = 60;
 	
 	//Clock clock = new Clock();
 
@@ -70,31 +72,49 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		map.paint(g);
 //<<<<<<< HEAD
 		
+		//living
+		if(map.getDir()==0) {
+			items[7].paint(g);
+			items[12].paint(g);
+		}
 		//garage
 		if(map.getDir()==1) {
 			items[2].paint(g);
+			items[8].paint(g);
+			items[13].paint(g);
 		}
 		//stewie
 		if(map.getDir()==2) {
 			items[4].paint(g);
+			items[14].paint(g);
 		}
 		//attic
 		if(map.getDir()==3) {
 			items[6].paint(g);
+			items[10].paint(g);
+			items[11].paint(g);
 		}
 		//kitchen
 		if(map.getDir()==4) {
 			items[0].paint(g);
 			items[1].paint(g);
 			items[5].paint(g);
+			items[9].paint(g);
 		}
+		
+		
+		Font myFont = new Font ("Courier New", 1, 50);
+		g.setFont (myFont);
+		g.setColor(Color.red);
+    	g.drawString(": " + Integer.toString(sec), 370, 50);
+    	g.drawRect(disaster, disaster, sec, disaster);
 		
 	    
 						
 				
 		
 //=======
-		clock.paint(g);
+		//clock.paint(g);
 
 //>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 	}
@@ -104,6 +124,19 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		
 		
 //=======
+	
+	
+	
+	public static String tick(int sec) {
+		   if(sec == 0) {
+		    	System.out.println("complete");
+		    				tick.stop();
+		
+
+		}
+		return Integer.toString(sec);
+		}
+
 
 
 	public static void main(String[] arg) {
@@ -114,6 +147,23 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		try {
 			
 			
+			 ActionListener taskPerformer = new ActionListener() {
+
+		            public void actionPerformed(ActionEvent evt) {
+		                //...Perform a task...
+			            tick(sec);
+			            sec--;
+		            }
+		            			 
+			 };
+			 
+			 tick = new Timer(1000, taskPerformer);
+		    tick.start();
+		    
+	    
+	    
+	    
+	    
 			Scanner scanner = new Scanner(new File("disasters.txt"));
 			scanner.next();
 
@@ -253,7 +303,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 //>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 
 		map = new Map();
-	 clock = new Clock();
+	 //clock = new Clock();
 
 		statePopup();
 		
@@ -340,22 +390,62 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent m) {
 		// TODO Auto-generated method stub
+		for(int i =0; i<items.length; i++) {
+			if(items[i].collided(m.getX(), m.getY(),15,15)) {
+					
+				System.out.println("collieded");
+			}
+		}
+		
 		
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mouseEntered(MouseEvent m) {
 		
+		
+		
+	/*	//living
+				if(map.getDir()==0) {
+					items[7].paint(g);
+					items[12].paint(g);
+				}
+				//garage
+				if(map.getDir()==1) {
+					items[2].paint(g);
+					items[8].paint(g);
+					items[13].paint(g);
+				}
+				//stewie
+				if(map.getDir()==2) {
+					items[4].paint(g);
+					items[14].paint(g);
+				}
+				//attic
+				if(map.getDir()==3) {
+					items[6].paint(g);
+					items[10].paint(g);
+					items[11].paint(g);
+				}
+				//kitchen
+				if(map.getDir()==4) {
+					items[0].paint(g);
+					items[1].paint(g);
+					items[5].paint(g);
+					items[9].paint(g);
+				}
+		*/
 	}
 
 	@Override
-	public void mouseExited(MouseEvent arg0) {
+	public void mouseExited(MouseEvent m) {
 		// TODO Auto-generated method stub
 		
+		
 	}
+	
 
 	@Override
 	public void mousePressed(MouseEvent m) {

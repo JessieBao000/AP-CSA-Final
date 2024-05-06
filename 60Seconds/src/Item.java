@@ -10,14 +10,14 @@ public class Item {
 
 	private Image soup,water,aid,shelter,cloth,knife,flashlight,
 	 				radio,gas,soap,map,gloves,family,generator,book; 
-	private AffineTransform tx, tx2;
+	private AffineTransform tx, tx2,tx3;
 	
 	public int dir=0;
 	public int maxDir=15;
 	int width, height;
 	int x, y;				
-	double scaleWidth = 0.6;		
-	double scaleHeight = 0.6;
+	double scaleWidth = 0.3;		
+	double scaleHeight = 0.3;
 	double scaleWidth2 = 0.2;		
 	double scaleHeight2 = 0.2;
 	
@@ -33,19 +33,20 @@ public class Item {
 		radio 	= getImage("/imgs/"+"radio.png"); 
 		gas 	= getImage("/imgs/"+"gas.png"); 
 		soap 	= getImage("/imgs/"+"soap.png"); 
-		map 	= getImage("/imgs/"+"campbell.png"); 
-		gloves 	= getImage("/imgs/"+"water.png"); 
-		family 	= getImage("/imgs/"+"water.png"); 
-		generator 	= getImage("/imgs/"+"campbell.png"); 
-		book 	= getImage("/imgs/"+"water.png"); 
+		map 	= getImage("/imgs/"+"map.png"); 
+		gloves 	= getImage("/imgs/"+"gloves.png"); 
+		family 	= getImage("/imgs/"+"cat.png"); 
+		generator 	= getImage("/imgs/"+"generator.png"); 
+		book 	= getImage("/imgs/"+"book.png"); 
 		
-		width = 60;
+		width = 100;
 		height = 100;
 		x = 0;
 		y = 0;
 		
 		tx = AffineTransform.getTranslateInstance(0, 0);
 		tx2 = AffineTransform.getTranslateInstance(0, 0);
+		tx3 = AffineTransform.getTranslateInstance(0, 0);
 		
 		//init(x, y); 
 		
@@ -56,84 +57,140 @@ public class Item {
 		Graphics2D g2 = (Graphics2D) g;
 		
 
-		//g.drawRect(x, y, width, height);
+		//g2.drawRect(x, y, width, height);
 
 		
 		switch(dir) {
 			case 0:
-				init(100,100);
-				g2.drawImage(soup, tx, null);
-				//g.drawRect(x, y, width, height);
+				x = 120;
+				y = 190;
+				width = 60;
+				height = 100;
+				init2(x,y);
+				g2.drawImage(soup, tx2, null);
+				g2.drawRect(x, y, width, height);
 				break;
 			case 1:
-				init2(200,200);
+				x = 200;
+				y = 300;
+				width = 50;
+				height = 130;
+				init2(x,y);
 				g2.drawImage(water, tx2, null);
-				//g.drawRect(x, y, width, height);
+				g2.drawRect(x, y, width, height);
 				break;
 			case 2:
-				init(150,300);
-				g2.drawImage(aid, tx, null);
-				//g.drawRect(x, y, width, height);
+				x = 80;
+				y = 100;
+				width = 100;
+				height = 80;
+				init2(x,y);
+				g2.drawImage(aid, tx2, null);
+				g2.drawRect(x, y, width, height);
 				break;
 			case 3:
 				init(x,y);
 				g2.drawImage(shelter, tx, null);
-				//g.drawRect(x, y, width, height);
+				//g2.drawRect(x, y, width, height);
 				break;
 			case 4:
-				init2(500,400);
+				x = 530;
+				y = 380;
+				width = 100;
+				height = 60;
+				init2(x,y);
 				g2.drawImage(cloth, tx2, null);
-				//g.drawRect(x, y, width, height);
+				g2.drawRect(x, y, width, height);
 				break;
 			case 5:
-				init2(300,200);
+				x = 470;
+				y = 300;
+				width = 100;
+				height = 50;
+				init2(x,y);
 				g2.drawImage(knife, tx2, null);
-				//g.drawRect(x, y, width, height);
+				g2.drawRect(x, y, width, height);
 				break;
 			case 6:
-				init2(550,500);
+				x = 550;
+				y = 500;
+				width = 100;
+				height = 50;
+				init2(x,y);
 				g2.drawImage(flashlight, tx2, null);
-				//g.drawRect(x, y, width, height);
+				g2.drawRect(x, y, width, height);
 				break;
 			case 7:
-				init(x,y);
-				g2.drawImage(radio, tx, null);
-				//g.drawRect(x, y, width, height);
+				x = 50;
+				y = 430;
+				width = 100;
+				height = 80;
+				init2(x,y);
+				g2.drawImage(radio, tx2, null);
+				g2.drawRect(x, y, width, height);
 				break;
 			case 8:
-				init(x,y);
-				g2.drawImage(gas, tx, null);
-				//g.drawRect(x, y, width, height);
+				x = 420;
+				y = 320;
+				width = 100;
+				height = 90;
+				init2(x,y);
+				g2.drawImage(gas, tx2, null);
+				g2.drawRect(x, y, width, height);
 				break;
 			case 9:
-				init(x,y);
-				g2.drawImage(soap, tx, null);
-				//g.drawRect(x, y, width, height);
+				x = 270;
+				y = 160;
+				width = 100;
+				height = 70;
+				init2(x,y);
+				g2.drawImage(soap, tx2, null);
+				g2.drawRect(x, y, width, height);
 				break;
 			case 10:
+				x = 300;
+				y = 400;
+				width = 140;
+				height = 100;
 				init(x,y);
 				g2.drawImage(map, tx, null);
-				//g.drawRect(x, y, width, height);
+				g2.drawRect(x, y, width, height);
 				break;
 			case 11:
-				init(x,y);
-				g2.drawImage(gloves, tx, null);
-				//g.drawRect(x, y, width, height);
+				x = 100;
+				y = 450;
+				width = 120;
+				height = 70;
+				init2(x,y);
+				g2.drawImage(gloves, tx2, null);
+				g2.drawRect(x, y, width, height);
 				break;
 			case 12:
-				init(x,y);
-				g2.drawImage(family, tx, null);
-				//g.drawRect(x, y, width, height);
+				x = 260;
+				y = 230;
+				width = 100;
+				height = 60;
+				init2(x,y);
+				g2.drawImage(family, tx2, null);
+				g2.drawRect(x, y, width, height);
 				break;
 			case 13:
+				x = 600;
+				y = 400;
+				width = 150;
+				height = 130;
 				init(x,y);
 				g2.drawImage(generator, tx, null);
-				//g.drawRect(x, y, width, height);
+				g2.drawRect(x, y, width, height);
 				break;
 			case 14:
-				init(x,y);
-				g2.drawImage(book, tx, null);
-				//g.drawRect(x, y, width, height);
+				x=170;
+				y = 400;
+				width = 100;
+				height = 80;
+				init2(x,y);
+				g2.drawImage(book, tx2, null);
+				g2.drawRect(x, y, width, height);
 				break;
 			
 		}
@@ -147,11 +204,25 @@ public class Item {
 		tx.scale(scaleWidth, scaleHeight);
 	}
 	
+	public boolean collided(int x, int y, int width, int height) {
+		Rectangle otherObject = new Rectangle(x-15,y-20,width,height);
+		Rectangle thisObject = new Rectangle(this.x,this.y,this.width,this.height);
+		return otherObject.intersects(thisObject);
+	}
+	
+	
 	
 	private void init2(double a, double b) {
 		tx2.setToTranslation(a, b);
 		tx2.scale(scaleWidth2, scaleHeight2);
 	}
+	
+	private void init3(double a, double b) {
+		tx3.setToTranslation(a, b);
+		tx3.scale(0.4, 0.4);
+	}
+	
+	
 
 	
 	private Image getImage(String path) {
