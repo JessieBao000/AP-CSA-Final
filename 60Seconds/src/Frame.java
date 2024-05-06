@@ -1,11 +1,9 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GridLayout;
+import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,33 +11,22 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.TimerTask;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.TimerTask;
-
-import java.awt.Color;
-import java.awt.Dimension;
-import java.util.Scanner;
-import java.util.TimerTask;
-
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 //<<<<<<< HEAD
@@ -70,6 +57,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		map.paint(g);
+
+		//clock.paint(g);
+
 //<<<<<<< HEAD
 		
 		//living
@@ -80,8 +70,12 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//garage
 		if(map.getDir()==1) {
 			items[2].paint(g);
+//<<<<<<< HEAD
 			items[8].paint(g);
 			items[13].paint(g);
+//=======
+			
+//>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 		}
 		//stewie
 		if(map.getDir()==2) {
@@ -102,6 +96,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			items[9].paint(g);
 		}
 		
+//<<<<<<< HEAD
 		
 		Font myFont = new Font ("Courier New", 1, 50);
 		g.setFont (myFont);
@@ -109,12 +104,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
     	g.drawString(": " + Integer.toString(sec), 370, 50);
     	g.drawRect(disaster, disaster, sec, disaster);
 		
+ 
+//>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 	    
-						
+
 				
 		
 //=======
+//<<<<<<< HEAD
 		//clock.paint(g);
+//=======
+//>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 
 //>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 	}
@@ -138,14 +138,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		}
 
 
-
-	public static void main(String[] arg) {
+	public static void main(String[] arg) throws Exception{
 		
 		
+	        
 
 //>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 		try {
-			
 			
 			 ActionListener taskPerformer = new ActionListener() {
 
@@ -160,6 +159,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			 tick = new Timer(1000, taskPerformer);
 		    tick.start();
 		    
+		    	
+		
+	
 	    
 	    
 	    
@@ -270,6 +272,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			
 		}
 		
+		
 	Frame f = new Frame();	
 			
 			
@@ -303,7 +306,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 //>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 
 		map = new Map();
-	 //clock = new Clock();
 
 		statePopup();
 		
