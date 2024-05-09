@@ -8,55 +8,74 @@ import java.net.URL;
 
 public class Map {
 
-	private Image test1, test2, test3; 
-	private AffineTransform tx;
+	private Image living, garage, stewie, attic, kitchen; 
+	private AffineTransform tx, tx2;
 	
 	public int dir=0;
-	public int maxDir=2;
+	public int maxDir=4;
 	int width, height;
 	int x, y;				
-	double scaleWidth = 3;		
-	double scaleHeight = 3;
+	double scaleWidth = 0.75;		
+	double scaleHeight = 0.75;
+	double scaleWidth2 = 0.6;		
+	double scaleHeight2 = 0.6;
 	
 	public Map() {
 		
-		test1 	= getImage("/imgs/"+"test1.jpg"); 
-		test2 	= getImage("/imgs/"+"test2.jpg"); 
-		test3 	= getImage("/imgs/"+"test3.png"); 
+		living 	= getImage("/imgs/"+"familyguyroom.PNG"); 
+		garage 	= getImage("/imgs/"+"garage.PNG"); 
+		stewie 	= getImage("/imgs/"+"stewie.png"); 
+		attic 	= getImage("/imgs/"+"houseattic.PNG"); 
+		kitchen 	= getImage("/imgs/"+"kitchen.png"); 
 		
-		width = 600;
+		width = 900;
 		height = 600;
 		x = 0;
 		y = 0;
 		
 		tx = AffineTransform.getTranslateInstance(0, 0);
+		tx2 = AffineTransform.getTranslateInstance(0, 0);
 		
-		init(x, y); 
+		//init(x, y); 
 		
 	}
 
 	public void paint(Graphics g) {
 		//these are the 2 lines of code needed draw an image on the screen
 		Graphics2D g2 = (Graphics2D) g;
-		
 
 		g.drawRect(x, y, width, height);
 
-		init(x,y);
+	//init(x,y);
 		
 		switch(dir) {
 			case 0:
-				g2.drawImage(test1, tx, null);
+				init2(x,y);
+				g2.drawImage(living, tx2, null);
 				g.drawRect(x, y, width, height);
 				break;
 				
 			case 1:
-				g2.drawImage(test2, tx, null);
+				init2(x,y);
+				g2.drawImage(garage, tx2, null);
 				g.drawRect(x, y, width, height);
 				break;
 				
 			case 2:
-				g2.drawImage(test3, tx, null);
+				init(x, y); 
+				g2.drawImage(stewie, tx, null);
+				g.drawRect(x, y, width, height);
+				break;
+				
+			case 3:
+				init(x, y);  
+				g2.drawImage(attic, tx, null);
+				g.drawRect(x, y, width, height);
+				break;
+				
+			case 4:
+				init(x, y); 
+				g2.drawImage(kitchen, tx, null);
 				g.drawRect(x, y, width, height);
 				break;
 				
@@ -69,6 +88,12 @@ public class Map {
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
 		tx.scale(scaleWidth, scaleHeight);
+	}
+	
+	
+	private void init2(double a, double b) {
+		tx2.setToTranslation(a, b);
+		tx2.scale(scaleWidth2, scaleHeight2);
 	}
 
 	

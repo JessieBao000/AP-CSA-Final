@@ -1,11 +1,9 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GridLayout;
+import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,63 +11,301 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.TimerTask;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.File;
-import java.io.IOException;
-import java.util.Random;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
+//<<<<<<< HEAD
 	
 	
 	
 	Map map;
+//<<<<<<< HEAD
+	
+//=======
+	//Clock clock;
 
+//>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
+	static String state = "California";
 	
+	static HashMap dangers = new HashMap<String, State>();
+	static HashMap itemsList = new HashMap<String, ItemsInfo>();
 	
+	int disaster = 0;
 	
+    Item[] items;
+	Item test;
+	static Timer tick;
+	static int sec = 60;
 	
+	//Clock clock = new Clock();
 
 	public void paint(Graphics g) {
 		super.paintComponent(g);
-		
 		map.paint(g);
+
+		//clock.paint(g);
+
+//<<<<<<< HEAD
+		
+		//living
+		if(map.getDir()==0) {
+			items[7].paint(g);
+			items[12].paint(g);
+		}
+		//garage
+		if(map.getDir()==1) {
+			items[2].paint(g);
+//<<<<<<< HEAD
+			items[8].paint(g);
+			items[13].paint(g);
+//=======
+			
+//>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
+		}
+		//stewie
+		if(map.getDir()==2) {
+			items[4].paint(g);
+			items[14].paint(g);
+		}
+		//attic
+		if(map.getDir()==3) {
+			items[6].paint(g);
+			items[10].paint(g);
+			items[11].paint(g);
+		}
+		//kitchen
+		if(map.getDir()==4) {
+			items[0].paint(g);
+			items[1].paint(g);
+			items[5].paint(g);
+			items[9].paint(g);
+		}
+		
+//<<<<<<< HEAD
+		
+		Font myFont = new Font ("Courier New", 1, 50);
+		g.setFont (myFont);
+		g.setColor(Color.red);
+    	g.drawString(Integer.toString(sec), 390, 50);
+    	g.drawRect(disaster, disaster, sec, disaster);
+		
+ 
+//>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 	    
+
+				
+		
+//=======
+//<<<<<<< HEAD
+		//clock.paint(g);
+//=======
+//>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
+
+//>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 	}
+//<<<<<<< HEAD
 	
-	public static void main(String[] arg) {
-		Frame f = new Frame();
-	}
+//		public static void main(String[] arg) {
+		
+		
+//=======
+	
+	
+	
+	public static void main(String[] arg) throws Exception{
+		
+		
+	        
+
+//>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
+		try {
+			
+			 ActionListener taskPerformer = new ActionListener() {
+
+		            public void actionPerformed(ActionEvent evt) {
+		                //...Perform a task...
+			          //  tick(sec);
+			          //  sec--;
+		            }
+		            			 
+			 };
+			 
+			// tick = new Timer(1000, taskPerformer);
+		//    tick.start();
+		    
+		    	
+		
+	
+	    
+	    
+	    
+	    
+			Scanner scanner = new Scanner(new File("disasters.txt"));
+			scanner.next();
+
+			while(scanner.hasNext()) {
+				String line = scanner.next();
+				String s="";
+				int earthquake = 0;
+				int volcano=0;
+				int bomb=0;
+				
+				//System.out.println(line);
+				String[] arr= line.split(",",5);
+				
+				for(int i = 0; i<4;i++) {
+					
+					if(i==0) {
+						s = arr[i].trim();
+						s = s.toLowerCase();
+						state = s;
+					}else if(i==1) {
+						earthquake = Integer.valueOf(arr[i]);
+					}else if(i==2) {
+						volcano = Integer.valueOf(arr[i]);
+					}else if(i==3) {
+						bomb = Integer.valueOf(arr[i]);
+					}
+					
+				}
+				
+				
+				State temp = new State(s, earthquake, volcano, bomb);
+				//System.out.println(s + earthquake + volcano + bomb);
+				dangers.put(s,temp);
+				
+				
+				
+			}
+			
+			scanner.close();
+			
+			
+			
+		}catch(Exception e) {
+			
+			System.out.println(e);
+			
+		}
+		
+		/*
+		 * ITEMS HASHMAP
+		 */
+		try {
+			
+			
+			Scanner scanner = new Scanner(new File("items.txt"));
+			scanner.next();
+			
+			while(scanner.hasNext()) {
+				String line = scanner.next();
+				String n="";
+				int hunger = 0;
+				int saftey=0;
+				int health=0;
+				int sanity = 0;
+				
+				//System.out.println(line);
+				String[] arr= line.split(",",6);
+				
+				for(int i = 0; i<5;i++) {
+					
+					if(i==0) {
+						n = arr[i].trim();
+						n = n.toLowerCase();
+					}else if(i==1) {
+						hunger = Integer.valueOf(arr[i]);
+					}else if(i==2) {
+						saftey = Integer.valueOf(arr[i]);
+					}else if(i==3) {
+						health = Integer.valueOf(arr[i]);
+					}else if(i==4) {
+						sanity = Integer.valueOf(arr[i]);
+					}
+					
+				}
+				
+				
+				ItemsInfo temp = new ItemsInfo(n, hunger, saftey, health, sanity);
+				//System.out.println(s + earthquake + volcano + bomb);
+				itemsList.put(n,temp);
+				System.out.println(n);
+				
+				
+				
+				
+			}
+			
+			scanner.close();
+			
+			
+			
+		}catch(Exception e) {
+			
+			System.out.println(e);
+			
+		}
+		
+		
+	Frame f = new Frame();	
+			
+			
+
+	 }
+	
 	
 	public Frame() {
 		JFrame f = new JFrame("60 Seconds");
-		f.setSize(new Dimension(600, 600));
+		f.setSize(new Dimension(900, 600));
 		f.setBackground(Color.cyan);
 		f.add(this);
 		f.setResizable(false);
  		f.addMouseListener(this);
 		f.addKeyListener(this);
+		//f.setDefaultCloseOperation(WinndowConstans.EXIT on close);
+		//f.add(clock);
+		//f.setVisible(true);
+		
 
 
-
+//<<<<<<< HEAD
+		map = new Map();
+		items = new Item[15];
+		for(int i =0; i<items.length;i++) {
+			Item a = new Item();
+			a.setDir(i);
+			items[i] = a;
+		}
+//=======
+//>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 
 		map = new Map();
 
+//<<<<<<< HEAD
 
-		testPopup();
+//=======
+		statePopup();
 		
-	
+		openPopup();
+		
+//>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
+//		
+		
 		//backgroundMusic.play();
 
 	
@@ -77,10 +313,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//the cursor image must be outside of the src folder
 		//you will need to import a couple of classes to make it fully 
 		//functional! use eclipse quick-fixes
-		/*setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-				new ImageIcon("torch.png").getImage(),
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon("placeholder.png").getImage(),
 				new Point(0,0),"custom cursor"));	
-		*/
+		
 		
 		Timer t = new Timer(16, this);
 		t.start();
@@ -88,42 +324,145 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		f.setVisible(true);
 	}
 	
-	
-	public void testPopup() {
+
+//=======
+	public void statePopup() {
         // Show input dialog with a message and default value
         String userInput = JOptionPane.showInputDialog(
             null, 
-            "Enter your name:", 
+            "Enter a United State:", 
             "User Input", 
             JOptionPane.QUESTION_MESSAGE
         );
-
-        // If user input is not null and not empty, display it
-        if (userInput != null && !userInput.isEmpty()) {
-            System.out.println("User entered: " + userInput);
-        } else {
-            System.out.println("User did not enter anything.");
-        }
+		while ((userInput.equals(null) )|| userInput.isEmpty() || !dangers.containsKey(state)) {
+       		
+            System.out.println("Enter in a new state");
+                   
+            userInput = JOptionPane.showInputDialog(
+                     null, 
+                     "Enter a valid United State", 
+                     "User Input", 
+                     JOptionPane.QUESTION_MESSAGE
+                );
+            
+           state = userInput.toLowerCase();
+    		state = userInput.replace(" ", "");
+           
+       } 
+       
+       State temp = (State)(dangers.get(state));
+  		System.out.println(state + temp.getEarthquake() + " " + temp.getVolcano() + " "+ temp.getBomb());
+  		state = temp.getState();
     }
 	
 
+	
+	
+	public void openPopup() {
+        // Show input dialog with a message and default value
+		    /* Simple JOptionPane ShowOptionDialogJava example */    
+		    String[] options = { "Earthquake", "Volcano", "Bomb" };
+		    int selection = JOptionPane.showOptionDialog(null, "You have 60 seconds to gather supplies before a disaster, which one will happen?", "Disaster Struck!", 
+		                                                      0, 3, null, options, options[0]);
+		    if (selection == 0) {
+		      disaster = 1;
+		    }
+		    if (selection == 1) { 
+		    	disaster = 2;
+		    }
+		    if (selection == 2) { 
+		    	disaster = 3;
+		  }
+		    
+		    if (selection >= 0) {
+	            disaster = selection + 1; // Adjust the disaster variable accordingly
+	            ActionListener taskPerformer = new ActionListener() {
+	                public void actionPerformed(ActionEvent evt) {
+	                	if (sec == 0) {
+	        	            System.out.println("complete");
+	        	            tick.stop();
+	        	            // Add any additional actions upon completion of the timer
+	        	        } else {
+	        	            sec--; // Decrease by one every second
+	        	            repaint(); // Update the display every second
+	        	        }
+	                }
+	            };
+	            tick = new Timer(1000, taskPerformer);
+	            tick.start();
+	        }
+    }
+	
+	
+	 
+
+	
+	
+
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent m) {
 		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mouseEntered(MouseEvent m) {
 		
+		for(int i =0; i<items.length; i++) {
+			if(items[i].collided(m.getX(), m.getY(),15,15)) {
+					
+				items[i].setMouseOver(true);
+			}
+		}
+		
+	/*	//living
+				if(map.getDir()==0) {
+					items[7].paint(g);
+					items[12].paint(g);
+				}
+				//garage
+				if(map.getDir()==1) {
+					items[2].paint(g);
+					items[8].paint(g);
+					items[13].paint(g);
+				}
+				//stewie
+				if(map.getDir()==2) {
+					items[4].paint(g);
+					items[14].paint(g);
+				}
+				//attic
+				if(map.getDir()==3) {
+					items[6].paint(g);
+					items[10].paint(g);
+					items[11].paint(g);
+				}
+				//kitchen
+				if(map.getDir()==4) {
+					items[0].paint(g);
+					items[1].paint(g);
+					items[5].paint(g);
+					items[9].paint(g);
+				}
+		*/
 	}
 
 	@Override
-	public void mouseExited(MouseEvent arg0) {
+	public void mouseExited(MouseEvent m) {
 		// TODO Auto-generated method stub
+		for(int i =0; i<items.length; i++) {
+			if(items[i].collided(m.getX(), m.getY(),15,15)) {
+					
+				items[i].setMouseOver(false);
+			}
+		}
 		
 	}
+	
+	
+	
+//>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 
 	@Override
 	public void mousePressed(MouseEvent m) {
@@ -160,6 +499,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				}else {
 					map.dir = map.getDir()-1;
 				}
+				
+				
 				
 				break;
 				
