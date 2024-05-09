@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.TimerTask;
@@ -49,6 +50,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
     Item[] items;
 	Item test;
+	ArrayList<Item> inventory = new ArrayList<Item>();
+	String inventoryString = "Inventory: 0/10";
 	static Timer tick;
 	static int sec = 60;
 	
@@ -102,6 +105,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		g.setFont (myFont);
 		g.setColor(Color.red);
     	g.drawString(Integer.toString(sec), 390, 50);
+    	g.drawString(inventoryString, 390, 500);
     	g.drawRect(disaster, disaster, sec, disaster);
 		
  
@@ -402,7 +406,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void mouseClicked(MouseEvent m) {
 		// TODO Auto-generated method stub
-		
+		for(int i =0; i<items.length; i++) {
+			if(items[i].collided(m.getX(), m.getY(),15,15)) {
+					
+				if(inventory.size()<10) {
+					inventory.add(items[i]);
+					items[i].setX(1000);;
+					inventoryString = "Inventory: "+inventory.size()+"/10";
+					repaint();
+				}
+			}
+		}
 		
 	}
 
