@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -27,7 +28,6 @@ public class Map {
 		stewie 	= getImage("/imgs/"+"stewie.png"); 
 		attic 	= getImage("/imgs/"+"houseattic.PNG"); 
 		kitchen 	= getImage("/imgs/"+"kitchen.png"); 
-		
 		width = 900;
 		height = 600;
 		x = 0;
@@ -77,6 +77,10 @@ public class Map {
 				init(x, y); 
 				g2.drawImage(kitchen, tx, null);
 				g.drawRect(x, y, width, height);
+				break;
+			case 5: //closing
+				init(x,y);
+
 				break;
 				
 		}

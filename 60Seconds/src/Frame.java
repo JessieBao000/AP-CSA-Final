@@ -45,7 +45,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	static HashMap dangers = new HashMap<String, State>();
 	static HashMap itemsList = new HashMap<String, ItemsInfo>();
-	
+	JFrame f = new JFrame("60 Seconds");
+
 	int disaster = 0;
 	
     Item[] items;
@@ -53,14 +54,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	ArrayList<Item> inventory = new ArrayList<Item>();
 	String inventoryString = "Inventory: 0/10";
 	static Timer tick;
-	static int sec = 60;
-	
+	static int sec = 3;
+	int xx = 330,xy= 300,xw = 200,xh= 80; //restart button vals
+
 	//Clock clock = new Clock();
 
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		map.paint(g);
-
+		
 		//clock.paint(g);
 
 //<<<<<<< HEAD
@@ -98,6 +100,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			items[5].paint(g);
 			items[9].paint(g);
 		}
+
 		
 //<<<<<<< HEAD
 		
@@ -107,7 +110,23 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
     	g.drawString(Integer.toString(sec), 390, 50);
     	g.drawString(inventoryString, 390, 500);
     	g.drawRect(disaster, disaster, sec, disaster);
-		
+    	
+    	//Lazy x & y cords for restart button
+
+    	//END Screen
+		if(map.getDir()==5) {
+			g.setColor(Color.black);
+	        g.fillRect(0,0,1000,1000);
+			g.setColor(Color.pink);
+	        g.drawString("you" + "won/lost", 390, 50);
+	        g.fillRect(xx,xy,xw,xh);
+			Font myf = new Font ("Courier New", 6, 30);
+			g.setFont (myf);
+			g.setColor(Color.white);
+	        g.drawString("try again?" , 350, 340);
+
+//wi, he
+		}
  
 //>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 	    
@@ -274,7 +293,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	
 	public Frame() {
-		JFrame f = new JFrame("60 Seconds");
 		f.setSize(new Dimension(900, 600));
 		f.setBackground(Color.cyan);
 		f.add(this);
@@ -385,6 +403,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	                	if (sec == 0) {
 	        	            System.out.println("complete");
 	        	            tick.stop();
+	        	            map.dir = 5;
 	        	            // Add any additional actions upon completion of the timer
 	        	        } else {
 	        	            sec--; // Decrease by one every second
@@ -415,10 +434,25 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 					inventoryString = "Inventory: "+inventory.size()+"/10";
 					repaint();
 				}
+				
+
 			}
 		}
 		
-	}
+
+		if(map.getDir()==5) {//Restart button
+			if(((m.getX() >= (double)xx) && (m.getX() <= (double)(xx+xw))) && ((m.getY() >= (double)xy) && (m.getY() < (double)xy+xh))) {
+			f.dispose();
+			}
+			
+
+			}
+			
+		}
+			
+		
+		
+	
 
 	@Override
 	public void mouseEntered(MouseEvent m) {
