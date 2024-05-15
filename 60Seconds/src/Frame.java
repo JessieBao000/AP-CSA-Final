@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
+public class Frame extends JPanel implements ActionListener, MouseListener, MouseMotionListener, KeyListener {
 //<<<<<<< HEAD
 	
 	
@@ -54,7 +55,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	ArrayList<Item> inventory = new ArrayList<Item>();
 	String inventoryString = "Inventory: 0/10";
 	static Timer tick;
-	static int sec = 3;
+	static int sec = 60;
 	int xx = 330,xy= 300,xw = 200,xh= 80; //restart button vals
 
 	//Clock clock = new Clock();
@@ -302,7 +303,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//f.setDefaultCloseOperation(WinndowConstans.EXIT on close);
 		//f.add(clock);
 		//f.setVisible(true);
-		
+		addMouseListener(this);
+		addMouseMotionListener(this);
 
 
 //<<<<<<< HEAD
@@ -509,6 +511,21 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	}
 	
 	
+	
+	@Override
+	   public void mouseDragged(MouseEvent e) {}
+	   @Override
+	   public void mouseMoved(MouseEvent e) {
+	       for(Item i : items) {
+	       	if(i.collided(e.getX(), e.getY(), 15, 15)) {
+	       		i.setMouseOver(true);
+	       	}else {
+	       		i.setMouseOver(false);
+	       	}
+	       }
+	      
+	   }
+
 	
 //>>>>>>> branch 'master' of https://github.com/JessieBao000/AP-CSA-Final.git
 
